@@ -5,4 +5,10 @@ class Project < ActiveRecord::Base
   has_many :contributions
   has_many :users, :through => :contributions
 
+  def total
+    self.contributions.inject(0) do |total, contribution|
+      total + contribution.amount
+    end
+  end
+
 end
