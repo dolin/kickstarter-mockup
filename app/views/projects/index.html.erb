@@ -1,21 +1,17 @@
 <h1>Listing projects</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @projects.each do |project| %>
-  <tr>
-    <td><%= link_to project.name, project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <ul>
+      <%= link_to project.name, project %> Goal: <%= project.goal %>
+        <% project.contributions.each do |contribution| %>
+          <li>
+            <%= User.find(contribution.user_id).name %> - <%= contribution.amount %>
+          </li>
+        <% end %>
+        <br>Total Contributed: <%= project.total %>
+    </ul>
+    <%= link_to 'Contribute', new_contribution_url  %>
 <% end %>
-</table>
-
-<br />
 
 <%= link_to 'New Project', new_project_path %>

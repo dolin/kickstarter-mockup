@@ -1,0 +1,28 @@
+<%= form_for(@contribution) do |f| %>
+  <% if @contribution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contribution.errors.count, "error") %> prohibited this contribution from being saved:</h2>
+
+      <ul>
+      <% @contribution.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label 'Projects' %>
+    <%= f.collection_select :project, @projects, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.label :amount %>
+    <%= f.number_field :amount %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>
