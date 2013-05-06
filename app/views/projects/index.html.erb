@@ -10,6 +10,7 @@
           </li>
         <% end %>
         <br>Total Contributed: <%= project.total %>
+        <br>Goal hit??? <%= project.goal_hit? %>
     </ul>
     <%= link_to 'Contribute', new_contribution_url  %>
 <% end %>
